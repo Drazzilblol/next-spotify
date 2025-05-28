@@ -1,13 +1,14 @@
 import { axiosInstance } from '@/app/axios';
+import { TArtists } from '@/app/types/spotify';
 
-export const getArtists = async () => {
+export const getArtists = async (): Promise<TArtists> => {
   return axiosInstance
     .get(`/me/following?type=artist&limit=50`)
     .catch((error) => {
       throw error;
     })
     .then((response) => {
-      return response?.data;
+      return response?.data.artists;
     });
 };
 

@@ -5,12 +5,15 @@ import { useCallback } from 'react';
 import { WebPlaybackSDK } from 'react-spotify-web-playback-sdk';
 import { Controls } from '@/app/components/Player/Controls/Controls';
 import styles from './Player.module.scss';
+import { TSession } from '@/app/types/auth';
 
 export const Player = () => {
-  const { data: session } = useSession();
+  const s = useSession();
+  const session = s.data as TSession;
+
   const getOAuthToken = useCallback(
-    (callback: any) => {
-      const token = (session as any)?.token?.access_token;
+    (callback: (token: string) => void) => {
+      const token = session?.token?.access_token || '';
       callback(token);
     },
     [session],

@@ -1,8 +1,9 @@
 'use client';
 import { FC } from 'react';
 import styles from './ArtistInfo.module.scss';
+import { TArtist } from '@/app/types/spotify';
 
-export const ArtistInfo: FC<{ artist: any }> = ({ artist }) => {
+export const ArtistInfo: FC<{ artist: TArtist }> = ({ artist }) => {
   return (
     <div className={styles.artistInfo}>
       <img

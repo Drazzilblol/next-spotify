@@ -4,14 +4,12 @@ import {
   useSpotifyPlayer,
 } from 'react-spotify-web-playback-sdk';
 import { CurrentSong } from '@/app/components/Player/Controls/CurrentSong/CurrentSong';
-import { useSession } from 'next-auth/react';
 import { useEffect } from 'react';
 import { userStore } from '@/app/stores/userStore/userStore';
 import styles from './Controls.module.scss';
+import { setCurrentDevice } from '@/app/stores/currentArtistStore/currentArtistService';
 
 export const Controls = () => {
-  const { data: session } = useSession();
-
   const player = useSpotifyPlayer();
 
   const device = usePlayerDevice();
@@ -19,24 +17,17 @@ export const Controls = () => {
   const playbackState = usePlaybackState(true);
 
   useEffect(() => {
-    if (device) setCurrentDevice();
+    if (device) setDevice();
   }, [device]);
 
   useEffect(() => {
     if (playbackState) userStore.setPlayback(playbackState);
   }, [playbackState]);
 
-  const setCurrentDevice = () => {
+  const setDevice = () => {
     if (device === null) return;
 
-    fetch(`https://api.spotify.com/v1/me/player`, {
-      method: 'PUT',
-      body: JSON.stringify({ device_ids: [device.device_id] }),
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${(session as any)?.token?.access_token}`,
-      },
-    });
+    setCurrentDevice(device.device_id);
     userStore.setDeviceID(device.device_id);
   };
 

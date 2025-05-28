@@ -3,8 +3,9 @@
 import { FC } from 'react';
 import styles from './SidebarItem.module.scss';
 import { useRouter } from 'next/navigation';
+import { TArtist } from '@/app/types/spotify';
 
-export const SidebarItem: FC<{ item: any; onClick: (artistUri: string) => void }> = ({
+export const SidebarItem: FC<{ item: TArtist; onClick: (artistUri: string) => void }> = ({
   item,
   onClick,
 }) => {

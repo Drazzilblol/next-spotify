@@ -1,10 +1,11 @@
 'use client';
 import { action, computed, makeObservable, observable, toJS } from 'mobx';
 import { getUser } from '@/app/stores/userStore/userService';
-import {libraryStore} from "@/app/stores/libraryStore/libraryStore";
+import { libraryStore } from '@/app/stores/libraryStore/libraryStore';
+import { TUser } from '@/app/types/spotify';
 
 class UserStore {
-  user: any = {};
+  user: TUser = {} as TUser;
   deviceId: string = '';
   playback: Spotify.PlaybackState = {} as Spotify.PlaybackState;
 
@@ -25,7 +26,7 @@ class UserStore {
     });
   }
 
-  get getUser(): boolean {
+  get getUser(): TUser {
     return toJS(this.user);
   }
 
@@ -41,14 +42,14 @@ class UserStore {
     this.deviceId = deviceId;
   }
 
-  setPlayback(_playback: any) {
+  setPlayback(_playback: Spotify.PlaybackState) {
     this.playback = _playback;
   }
 
   loadUser() {
     getUser().then((user) => {
       this.user = user;
-      libraryStore.loadLibrary()
+      libraryStore.loadLibrary();
     });
   }
 }

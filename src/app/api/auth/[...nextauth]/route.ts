@@ -1,8 +1,9 @@
 import NextAuth from 'next-auth/next';
 import { type NextAuthOptions } from 'next-auth';
 import SpotifyProvider from 'next-auth/providers/spotify';
+import { TSession, TToken } from '@/app/types/auth';
 
-async function refreshAccessToken(token: any) {
+async function refreshAccessToken(token: TToken) {
   try {
     const url = 'https://accounts.spotify.com/api/token';
 
@@ -21,7 +22,7 @@ async function refreshAccessToken(token: any) {
       },
       body: new URLSearchParams({
         grant_type: 'refresh_token',
-        refresh_token: token.refresh_token,
+        refresh_token: token.refresh_token || '',
         client_id: process.env.SPOTIFY_CLIENT_ID || '',
       }),
     };
@@ -58,7 +59,7 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   callbacks: {
-    async jwt({ token, account }) {
+    async jwt({ token, account }): Promise<TToken> {
       // Initial sign in
       if (account) {
         return {
@@ -77,7 +78,7 @@ export const authOptions: NextAuthOptions = {
       return refreshAccessToken(token);
     },
 
-    async session({ session, token }) {
+    async session({ session, token }): Promise<TSession> {
       return {
         ...session,
         token,

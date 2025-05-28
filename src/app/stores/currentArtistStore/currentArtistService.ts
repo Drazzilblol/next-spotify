@@ -1,18 +1,18 @@
 import { getServerSession } from 'next-auth/next';
 import axios from 'axios';
 import { authOptions } from '@/app/api/auth/[...nextauth]/route';
-import { getSession } from 'next-auth/react';
 import { axiosInstance } from '@/app/axios';
+import { TSession } from '@/app/types/auth';
 
 type TPlayBody = { uris?: string[]; context_uri?: string; offset?: { position: number } };
 
 export const getArtistTopTracks = async (id: string): Promise<Spotify.Track[]> => {
-  const session = await getServerSession(authOptions);
+  const session = (await getServerSession(authOptions)) as TSession;
   return axios
     .get(`https://api.spotify.com/v1/artists/${id}/top-tracks`, {
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${(session as any)?.token?.access_token}`,
+        Authorization: `Bearer ${session?.token?.access_token}`,
       },
     })
     .catch((error) => {
@@ -21,16 +21,6 @@ export const getArtistTopTracks = async (id: string): Promise<Spotify.Track[]> =
     .then((response) => {
       return response?.data?.tracks;
     });
-};
-
-export const getPlaylists = async () => {
-  const session = await getSession();
-  return fetch(`https://api.spotify.com/v1/me/playlists`, {
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${(session as any)?.token?.access_token}`,
-    },
-  }).then((response) => response.json());
 };
 
 export const startPlay = async (deviceID: string, tracks: string | string[], offset?: number) => {
@@ -68,13 +58,24 @@ export const pausePlay = async (deviceID: string) => {
     });
 };
 
+export const setCurrentDevice = async (deviceID: string) => {
+  return axiosInstance
+    .put(`https://api.spotify.com/v1/me/player`, { device_ids: [deviceID] })
+    .catch((error) => {
+      throw error;
+    })
+    .then((response) => {
+      return response?.data;
+    });
+};
+
 export const getArtist = async (artistID: string) => {
-  const session = await getServerSession(authOptions);
+  const session = (await getServerSession(authOptions)) as TSession;
   return axios
     .get(`https://api.spotify.com/v1/artists/${artistID}`, {
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${(session as any)?.token?.access_token}`,
+        Authorization: `Bearer ${session?.token?.access_token}`,
       },
     })
     .catch((error) => {

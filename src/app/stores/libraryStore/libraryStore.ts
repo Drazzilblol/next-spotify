@@ -1,9 +1,10 @@
 'use client';
 import { action, computed, makeObservable, observable, toJS } from 'mobx';
-import { getArtists, getPlaylists } from '@/app/stores/libraryStore/libraryService';
+import { getArtists } from '@/app/stores/libraryStore/libraryService';
+import { TArtists } from '@/app/types/spotify';
 
 class LibraryStore {
-  library: any = [];
+  library: TArtists = {} as TArtists;
 
   pendingRequests = 0;
 
@@ -13,20 +14,21 @@ class LibraryStore {
       pendingRequests: observable,
       getLibrary: computed,
       loadLibrary: action,
+      setLibrary: action,
     });
   }
 
-  get getLibrary(): any {
+  get getLibrary(): TArtists {
     return toJS(this.library);
   }
 
-  setLibrary(library: any) {
+  setLibrary(library: TArtists) {
     this.library = library;
   }
 
   loadLibrary() {
     getArtists().then((artists) => {
-      this.library = artists.artists;
+      this.setLibrary(artists);
     });
   }
 }

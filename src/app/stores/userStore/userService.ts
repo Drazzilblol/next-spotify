@@ -1,6 +1,7 @@
 import { axiosInstance } from '@/app/axios';
+import { TUser } from '@/app/types/spotify';
 
-export const getUser = async () => {
+export const getUser = async (): Promise<TUser> => {
   return axiosInstance
     .get(`/me`)
     .catch((error) => {

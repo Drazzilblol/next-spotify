@@ -5,8 +5,9 @@ import {
 import { ArtistInfo } from '@/app/(home)/artist/[id]/componets/ArtistInfo/ArtistInfo';
 import { ArtistTracks } from '@/app/(home)/artist/[id]/componets/ArtistTracks/ArtistTracks';
 import styles from './page.module.scss';
+import { FC } from 'react';
 
-const Artist = async ({ params }: any) => {
+const Artist: FC<{ params: { id: string } }> = async ({ params }) => {
   const { id } = await params;
   const artist = await getArtist(id);
   const tracks: Spotify.Track[] = await getArtistTopTracks(artist.id);

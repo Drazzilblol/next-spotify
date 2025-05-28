@@ -5,14 +5,16 @@ import styles from './Header.module.scss';
 import { useEffect } from 'react';
 import { axiosInstance } from '@/app/axios';
 import { userStore } from '@/app/stores/userStore/userStore';
+import { TSession } from '@/app/types/auth';
 
-export const Header = ({}) => {
-  const { data: session } = useSession();
+export const Header = () => {
+  const s = useSession();
+  const session = s.data as TSession;
 
   useEffect(() => {
     if (session) {
       axiosInstance.defaults.headers.common['Authorization'] =
-        `Bearer ${(session as any)?.token?.access_token}`;
+        `Bearer ${session?.token?.access_token}`;
       userStore.loadUser();
     }
   }, [session]);
