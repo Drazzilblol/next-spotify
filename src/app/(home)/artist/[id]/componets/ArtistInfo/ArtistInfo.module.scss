@@ -1,0 +1,25 @@
+.artistInfo {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: fit-content;
+  margin: 12px;
+
+  &_cover {
+    width: 250px;
+    height: 250px;
+    border-radius: 100%;
+  }
+
+  &_info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 40px;
+  }
+
+  &_title {
+    font-size: 60px;
+    font-weight: 800;
+  }
+}

@@ -1,0 +1,12 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  height: 60px;
+
+  &_user {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+  }
+}

@@ -1,0 +1,12 @@
+.controls {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  width: fit-content;
+
+  &_buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+  }
+}

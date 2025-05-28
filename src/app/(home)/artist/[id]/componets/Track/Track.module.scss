@@ -1,0 +1,63 @@
+.track {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  cursor: default;
+  padding: 12px;
+  border-radius: 4px;
+  gap: 8px;
+  align-items: center;
+
+  &__current {
+    background: linear-gradient(90deg, rgb(255, 255, 255, 0.1), rgb(18, 18, 18, 1), rgb(255, 255, 255, 0.1));
+    background-size: 200% 200%;
+    animation: Animation 5s ease infinite;
+  }
+
+  &_name {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  &_number {
+    width: 20px;
+    height: 20px;
+  }
+
+  &_playButton {
+    display: none;
+    width: 20px;
+    height: 20px;
+  }
+
+  &_pauseButton {
+    width: 20px;
+    height: 20px;
+  }
+
+  &:hover {
+    background-color: rgb(255, 255, 255, 0.1);
+
+    .track_playButton {
+      display: block;
+    }
+
+    .track_number {
+      display: none;
+    }
+  }
+}
+
+@keyframes Animation {
+  0% {
+    background-position: 0% 100%;
+  }
+  50% {
+    background-position: 100% 0%;
+  }
+  100% {
+    background-position: 0% 100%;
+  }
+}

@@ -1,0 +1,6 @@
+{
+    "singleQuote": true,
+    "singleAttributePerLine": true,
+    "printWidth": 100,
+    "importOrderSortSpecifiers": true
+}

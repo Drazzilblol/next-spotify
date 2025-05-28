@@ -1,0 +1,38 @@
+.sidebarItem {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0 8px;
+  padding: 4px;
+  border-radius: 12px;
+
+  &_coverContainer {
+    position: relative;
+  }
+
+  &_cover {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    margin-right: 12px;
+  }
+
+  &_play {
+    width: 35px;
+    height: 35px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    opacity: 0;
+
+  }
+
+  &:hover {
+    .sidebarItem_play {
+      opacity: 0.9;
+    }
+
+    background-color: rgb(255, 255, 255, 0.1);
+  }
+}
