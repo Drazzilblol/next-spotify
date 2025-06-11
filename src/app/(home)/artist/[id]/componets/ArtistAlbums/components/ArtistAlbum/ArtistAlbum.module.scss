@@ -1,0 +1,19 @@
+.album {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  cursor: pointer;
+
+  &_name {
+    margin-top: 4px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  &:hover {
+    background-color: rgb(255, 255, 255, 0.1);
+    border-radius: 4px;
+  }
+
+}

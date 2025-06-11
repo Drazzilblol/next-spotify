@@ -1,16 +1,12 @@
-import {
-  getArtist,
-  getArtistTopTracks,
-} from '@/app/stores/currentArtistStore/currentArtistService';
+import { getArtist } from '@/app/stores/currentArtistStore/currentArtistService';
 import { ArtistInfo } from '@/app/(home)/artist/[id]/componets/ArtistInfo/ArtistInfo';
-import { ArtistTracks } from '@/app/(home)/artist/[id]/componets/ArtistTracks/ArtistTracks';
 import styles from './page.module.scss';
 import { FC } from 'react';
+import { ArtistContent } from '@/app/(home)/artist/[id]/componets/ArtistContent/ArtistContent';
 
 const Artist: FC<{ params: { id: string } }> = async ({ params }) => {
   const { id } = await params;
   const artist = await getArtist(id);
-  const tracks: Spotify.Track[] = await getArtistTopTracks(artist.id);
 
   if (!artist) {
     return null;
@@ -19,7 +15,7 @@ const Artist: FC<{ params: { id: string } }> = async ({ params }) => {
   return (
     <div className={styles.artist}>
       <ArtistInfo artist={artist} />
-      <ArtistTracks tracks={tracks} />
+      <ArtistContent artist={artist} />
     </div>
   );
 };

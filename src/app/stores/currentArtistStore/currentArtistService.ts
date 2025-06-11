@@ -6,6 +6,16 @@ import { TSession } from '@/app/types/auth';
 
 type TPlayBody = { uris?: string[]; context_uri?: string; offset?: { position: number } };
 
+export type TAlbumsResponse = {
+  href: string;
+  limit: number;
+  next: string;
+  offset: number;
+  previous: string;
+  total: number;
+  items: Spotify.Album[];
+};
+
 export const getArtistTopTracks = async (id: string): Promise<Spotify.Track[]> => {
   const session = (await getServerSession(authOptions)) as TSession;
   return axios
@@ -20,6 +30,23 @@ export const getArtistTopTracks = async (id: string): Promise<Spotify.Track[]> =
     })
     .then((response) => {
       return response?.data?.tracks;
+    });
+};
+
+export const getArtistAlbums = async (id: string): Promise<TAlbumsResponse> => {
+  const session = (await getServerSession(authOptions)) as TSession;
+  return axios
+    .get(`https://api.spotify.com/v1/artists/${id}/albums`, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${session?.token?.access_token}`,
+      },
+    })
+    .catch((error) => {
+      throw error;
+    })
+    .then((response) => {
+      return response?.data;
     });
 };
 

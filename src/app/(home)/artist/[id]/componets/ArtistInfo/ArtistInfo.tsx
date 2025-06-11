@@ -1,4 +1,3 @@
-'use client';
 import { FC } from 'react';
 import styles from './ArtistInfo.module.scss';
 import { TArtist } from '@/app/types/spotify';

@@ -1,0 +1,15 @@
+.artistAlbums {
+  display: grid;
+  width: 30%;
+  grid-template-columns: minmax(100px, 50%) minmax(100px, 50%);
+  overflow-y: scroll;
+  padding-right: 2px;
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgb(255, 255, 255, 0);
+  }
+
+  &:hover::-webkit-scrollbar-thumb {
+    background-color: rgb(255, 255, 255, 0.1);
+  }
+}
