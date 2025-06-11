@@ -3,18 +3,9 @@ import axios from 'axios';
 import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 import { axiosInstance } from '@/app/axios';
 import { TSession } from '@/app/types/auth';
+import { TAlbumsResponse } from '@/app/types/spotify';
 
 type TPlayBody = { uris?: string[]; context_uri?: string; offset?: { position: number } };
-
-export type TAlbumsResponse = {
-  href: string;
-  limit: number;
-  next: string;
-  offset: number;
-  previous: string;
-  total: number;
-  items: Spotify.Album[];
-};
 
 export const getArtistTopTracks = async (id: string): Promise<Spotify.Track[]> => {
   const session = (await getServerSession(authOptions)) as TSession;

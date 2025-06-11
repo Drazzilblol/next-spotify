@@ -4,6 +4,11 @@
   padding: 10px;
   cursor: pointer;
 
+  &_image {
+    width: 100%;
+    position: relative;
+  }
+
   &_name {
     margin-top: 4px;
     text-overflow: ellipsis;
@@ -11,9 +16,28 @@
     white-space: nowrap;
   }
 
+  &_play {
+    width: 45px;
+    height: 45px;
+    right: 5%;
+    bottom: 5%;
+    position: absolute;
+    background-color: rgb(30, 133, 2);
+    padding: 15px;
+    border-radius: 50%;
+    opacity: 0;
+
+    &:hover {
+      background-color: rgb(44, 193, 3);
+    }
+  }
+
   &:hover {
+    .album_play {
+      opacity: 1;
+    }
+
     background-color: rgb(255, 255, 255, 0.1);
     border-radius: 4px;
   }
-
 }
