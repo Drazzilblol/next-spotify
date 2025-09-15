@@ -1,12 +1,12 @@
 import { FC } from 'react';
 import styles from './ArtistContent.module.scss';
-import { ArtistTracks } from '@/app/(home)/artist/[id]/componets/ArtistTracks/ArtistTracks';
-import { ArtistAlbums } from '@/app/(home)/artist/[id]/componets/ArtistAlbums/ArtistAlbums';
+import { ArtistTracks } from '@/app/(home)/artist/[id]/components/ArtistTracks/ArtistTracks';
+import { ArtistAlbums } from '@/app/(home)/artist/[id]/components/ArtistAlbums/ArtistAlbums';
 import {
   getArtistAlbums,
   getArtistTopTracks,
-  TAlbumsResponse,
 } from '@/app/stores/currentArtistStore/currentArtistService';
+import { TAlbumsResponse } from '@/app/types/spotify';
 
 export const ArtistContent: FC<{ artist: any }> = async ({ artist }) => {
   const tracksReq: Promise<Spotify.Track[]> = getArtistTopTracks(artist.id);

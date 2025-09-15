@@ -2,7 +2,7 @@
 import { FC } from 'react';
 import styles from './ArtistTracks.module.scss';
 import { pausePlay, startPlay } from '@/app/stores/currentArtistStore/currentArtistService';
-import { Track } from '@/app/(home)/artist/[id]/componets/Track/Track';
+import { Track } from '@/app/(home)/artist/[id]/components/Track/Track';
 import { userStore } from '@/app/stores/userStore/userStore';
 import { observer } from 'mobx-react-lite';
 
