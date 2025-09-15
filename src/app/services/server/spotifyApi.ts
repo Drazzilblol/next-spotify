@@ -1,5 +1,5 @@
 import { axiosInstance } from '@/app/axios';
-import { TAlbumsResponse } from '@/app/types/spotify';
+import { TAlbum, TAlbumsResponse } from '@/app/types/spotify';
 import { withSessionHeaders } from './sessionHeaders';
 
 export const getArtistTopTracks = async (
@@ -38,6 +38,30 @@ export const getArtist = async (artistID: string) => {
     })
     .then((response) => {
       return response?.data;
+    });
+};
+
+export const getAlbum = async (albumID: string): Promise<TAlbum> => {
+  const headers = await withSessionHeaders();
+  return axiosInstance
+    .get(`/albums/${albumID}`, { headers })
+    .catch((error) => {
+      throw error;
+    })
+    .then((response) => {
+      return response?.data;
+    });
+};
+
+export const getAlbumTracks = async (albumID: string): Promise<Spotify.Track[]> => {
+  const headers = await withSessionHeaders();
+  return axiosInstance
+    .get(`/albums/${albumID}/tracks`, { headers })
+    .catch((error) => {
+      throw error;
+    })
+    .then((response) => {
+      return response?.data?.items;
     });
 };
 

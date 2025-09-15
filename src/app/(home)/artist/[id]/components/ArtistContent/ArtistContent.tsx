@@ -1,9 +1,9 @@
 import { FC } from 'react';
 import styles from './ArtistContent.module.scss';
-import { ArtistTracks } from '@/app/(home)/artist/[id]/components/ArtistTracks/ArtistTracks';
 import { ArtistAlbums } from '@/app/(home)/artist/[id]/components/ArtistAlbums/ArtistAlbums';
 import { getArtistAlbums, getArtistTopTracks } from '@/app/services/server/spotifyApi';
 import { TAlbumsResponse, TArtist } from '@/app/types/spotify';
+import { Tracks } from '../Tracks/Tracks';
 
 export const ArtistContent: FC<{ artist: TArtist }> = async ({ artist }) => {
   const tracksReq: Promise<Spotify.Track[]> = getArtistTopTracks(artist.id);
@@ -13,7 +13,9 @@ export const ArtistContent: FC<{ artist: TArtist }> = async ({ artist }) => {
 
   return (
     <div className={styles.artistContent}>
-      <ArtistTracks tracks={tracks} />
+      <div className={styles.artistContent_tracksContainer}>
+        <Tracks tracks={tracks} />
+      </div>
       <ArtistAlbums albums={albums} />
     </div>
   );

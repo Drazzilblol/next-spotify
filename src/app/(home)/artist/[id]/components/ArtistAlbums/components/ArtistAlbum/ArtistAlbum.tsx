@@ -6,6 +6,7 @@ import { observer } from 'mobx-react-lite';
 import { startPlay } from '@/app/services/client/playbackService';
 import { TAlbum } from '@/app/types/spotify';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export const ArtistAlbum: FC<{ album: TAlbum }> = observer(({ album }) => {
   const deviceID = userStore.getDeviceID;
@@ -17,12 +18,14 @@ export const ArtistAlbum: FC<{ album: TAlbum }> = observer(({ album }) => {
   return (
     <div className={styles.album}>
       <div className={styles.album_image}>
-        <Image
-          src={album.images[0].url}
-          alt={album.name}
-          width={album.images[0].width || 300}
-          height={album.images[0].height || 300}
-        />
+        <Link href={`/album/${album.id}`}>
+          <Image
+            src={album.images[0].url}
+            alt={album.name}
+            width={album.images[0].width || 300}
+            height={album.images[0].height || 300}
+          />
+        </Link>
         <div
           className={styles.album_play}
           onClick={onPlayClick}

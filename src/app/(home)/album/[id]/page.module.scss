@@ -1,0 +1,55 @@
+.album {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background-color: #121212;
+  border-radius: 6px;
+  gap: 24px;
+}
+
+.album_header {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin: 12px;
+}
+
+.album_cover {
+  width: 250px;
+  height: 250px;
+  border-radius: 16px;
+}
+
+.album_info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 40px;
+}
+
+.album_title {
+  font-size: 48px;
+  font-weight: 800;
+}
+
+.album_meta {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.album_tracks {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  overflow-y: auto;
+  max-height: 60vh;
+  padding-right: 8px;
+}
+
+.album_tracksInner {
+  width: 700px;
+  max-width: 90vw;
+}

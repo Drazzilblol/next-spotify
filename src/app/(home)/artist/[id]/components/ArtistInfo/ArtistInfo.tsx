@@ -9,8 +9,8 @@ export const ArtistInfo: FC<{ artist: TArtist }> = ({ artist }) => {
       <Image
         src={artist.images[0].url}
         alt={artist.name}
-        width={artist.images[0].width || 640}
-        height={artist.images[0].height || 640}
+        width={250}
+        height={250}
         className={styles.artistInfo_cover}
       />
       <div className={styles.artistInfo_info}>
