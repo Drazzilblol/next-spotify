@@ -2,6 +2,7 @@ import { FC } from 'react';
 import styles from './Track.module.scss';
 import moment from 'moment';
 import classNames from 'classnames/bind';
+import Image from 'next/image';
 
 const cx = classNames.bind(styles);
 
@@ -19,9 +20,11 @@ export const Track: FC<{
       })}
     >
       {!playback?.paused && isCurrent ? (
-        <img
+        <Image
           src={'/pause-button.svg'}
-          alt=""
+          alt="Pause"
+          width={24}
+          height={24}
           className={styles.track_pauseButton}
           onClick={() => {
             onClick(false);
@@ -29,9 +32,11 @@ export const Track: FC<{
         />
       ) : (
         <>
-          <img
+          <Image
             src={'/play-button.svg'}
-            alt=""
+            alt="Play"
+            width={24}
+            height={24}
             className={styles.track_playButton}
             onClick={() => {
               onClick(true);

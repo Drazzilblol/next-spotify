@@ -3,8 +3,9 @@ import { FC } from 'react';
 import styles from './ArtistAlbum.module.scss';
 import { userStore } from '@/app/stores/userStore/userStore';
 import { observer } from 'mobx-react-lite';
-import { startPlay } from '@/app/stores/currentArtistStore/currentArtistService';
+import { startPlay } from '@/app/services/server/playbackService';
 import { TAlbum } from '@/app/types/spotify';
+import Image from 'next/image';
 
 export const ArtistAlbum: FC<{ album: TAlbum }> = observer(({ album }) => {
   const deviceID = userStore.getDeviceID;
@@ -16,17 +17,21 @@ export const ArtistAlbum: FC<{ album: TAlbum }> = observer(({ album }) => {
   return (
     <div className={styles.album}>
       <div className={styles.album_image}>
-        <img
+        <Image
           src={album.images[0].url}
-          alt=""
+          alt={album.name}
+          width={album.images[0].width || 300}
+          height={album.images[0].height || 300}
         />
         <div
           className={styles.album_play}
           onClick={onPlayClick}
         >
-          <img
+          <Image
             src={'/play-button.svg'}
-            alt=""
+            alt="Play"
+            width={24}
+            height={24}
           />
         </div>
       </div>

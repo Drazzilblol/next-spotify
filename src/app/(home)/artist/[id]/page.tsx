@@ -1,4 +1,4 @@
-import { getArtist } from '@/app/stores/currentArtistStore/currentArtistService';
+import { getArtist } from '@/app/services/server/spotifyApi';
 import { ArtistInfo } from '@/app/(home)/artist/[id]/components/ArtistInfo/ArtistInfo';
 import styles from './page.module.scss';
 import { FC } from 'react';

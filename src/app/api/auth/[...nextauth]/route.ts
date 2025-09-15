@@ -14,10 +14,8 @@ async function refreshAccessToken(token: TToken) {
 
         Authorization:
           'Basic ' +
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-ignore
-          new Buffer.from(
-            process.env.SPOTIFY_CLIENT_ID + ':' + process.env.SPOTIFY_CLIENT_SECRET,
+          Buffer.from(
+            `${process.env.SPOTIFY_CLIENT_ID}:${process.env.SPOTIFY_CLIENT_SECRET}`,
           ).toString('base64'),
       },
       body: new URLSearchParams({

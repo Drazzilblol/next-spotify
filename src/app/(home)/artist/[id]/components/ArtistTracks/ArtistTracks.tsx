@@ -1,7 +1,7 @@
 'use client';
 import { FC } from 'react';
 import styles from './ArtistTracks.module.scss';
-import { pausePlay, startPlay } from '@/app/stores/currentArtistStore/currentArtistService';
+import { pausePlay, startPlay } from '@/app/services/server/playbackService';
 import { Track } from '@/app/(home)/artist/[id]/components/Track/Track';
 import { userStore } from '@/app/stores/userStore/userStore';
 import { observer } from 'mobx-react-lite';
@@ -12,7 +12,10 @@ export const ArtistTracks: FC<{ tracks: Spotify.Track[] }> = observer(({ tracks 
 
   return (
     <div className={styles.artistTracks}>
-      {tracks?.map((track, index) => {
+      {(!tracks || tracks.length === 0) ? (
+        <div>No top tracks available.</div>
+      ) : (
+        tracks.map((track, index) => {
         return (
           <Track
             playback={playbackState}
@@ -36,7 +39,8 @@ export const ArtistTracks: FC<{ tracks: Spotify.Track[] }> = observer(({ tracks 
             }}
           />
         );
-      })}
+        })
+      )}
     </div>
   );
 });
