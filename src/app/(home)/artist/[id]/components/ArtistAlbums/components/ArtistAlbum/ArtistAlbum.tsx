@@ -3,7 +3,7 @@ import { FC } from 'react';
 import styles from './ArtistAlbum.module.scss';
 import { userStore } from '@/app/stores/userStore/userStore';
 import { observer } from 'mobx-react-lite';
-import { startPlay } from '@/app/services/server/playbackService';
+import { startPlay } from '@/app/services/client/playbackService';
 import { TAlbum } from '@/app/types/spotify';
 import Image from 'next/image';
 

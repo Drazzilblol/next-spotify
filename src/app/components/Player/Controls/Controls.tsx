@@ -7,7 +7,7 @@ import { CurrentSong } from '@/app/components/Player/Controls/CurrentSong/Curren
 import { useEffect } from 'react';
 import { userStore } from '@/app/stores/userStore/userStore';
 import styles from './Controls.module.scss';
-import { setCurrentDevice } from '@/app/services/server/playbackService';
+import { setCurrentDevice } from '@/app/services/client/playbackService';
 
 export const Controls = () => {
   const player = useSpotifyPlayer();

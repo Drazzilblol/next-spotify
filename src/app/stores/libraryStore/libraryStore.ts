@@ -1,6 +1,6 @@
 'use client';
 import { action, computed, makeObservable, observable, toJS } from 'mobx';
-import { getArtists } from '@/app/stores/libraryStore/libraryService';
+import { getArtists } from '@/app/services/client/libraryService';
 import { TArtists } from '@/app/types/spotify';
 
 class LibraryStore {

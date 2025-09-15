@@ -1,6 +1,6 @@
 'use client';
 import { action, computed, makeObservable, observable, toJS } from 'mobx';
-import { getUser } from '@/app/stores/userStore/userService';
+import { getUser } from '@/app/services/client/userService';
 import { libraryStore } from '@/app/stores/libraryStore/libraryStore';
 import { TUser } from '@/app/types/spotify';
 

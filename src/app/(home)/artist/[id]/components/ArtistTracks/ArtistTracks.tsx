@@ -1,7 +1,7 @@
 'use client';
 import { FC } from 'react';
 import styles from './ArtistTracks.module.scss';
-import { pausePlay, startPlay } from '@/app/services/server/playbackService';
+import { pausePlay, startPlay } from '@/app/services/client/playbackService';
 import { Track } from '@/app/(home)/artist/[id]/components/Track/Track';
 import { userStore } from '@/app/stores/userStore/userStore';
 import { observer } from 'mobx-react-lite';

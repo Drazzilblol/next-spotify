@@ -11,3 +11,5 @@ export const getUser = async (): Promise<TUser> => {
       return response?.data;
     });
 };
+
+

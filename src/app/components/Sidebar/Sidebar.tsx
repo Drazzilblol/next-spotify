@@ -5,7 +5,7 @@ import { userStore } from '@/app/stores/userStore/userStore';
 import { libraryStore } from '@/app/stores/libraryStore/libraryStore';
 import { SidebarItem } from '@/app/components/Sidebar/SidebarItem/SidebarItem';
 import styles from './Sidebar.module.scss';
-import { startPlay } from '@/app/services/server/playbackService';
+import { startPlay } from '@/app/services/client/playbackService';
 import {TArtist} from "@/app/types/spotify";
 
 export const Sidebar = observer(() => {
