@@ -1,0 +1,37 @@
+@keyframes skeleton-loading {
+  0% {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+  50% {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  100% {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+}
+
+.skeletonItem {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0 8px;
+  padding: 4px;
+  border-radius: 12px;
+
+  &_circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    margin-right: 12px;
+    background-color: rgba(255, 255, 255, 0.05);
+    animation: skeleton-loading 1.5s infinite;
+  }
+
+  &_text {
+    height: 20px;
+    width: 200px;
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.05);
+    animation: skeleton-loading 1.5s infinite;
+  }
+}
